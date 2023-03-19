@@ -2,9 +2,9 @@
 #include <string.h>
 
 #define N_SYM 2
-#define N_STATE 5
-char dfa[N_STATE][N_SYM] = {{'1', '2'}, {'0', '3'}, {'1', '2'}, {'2', '0'}, {'1', '2'}};
-int final_state[N_STATE] = {0, 0, 0, 1, 0};
+#define N_STATE 8
+char dfa[N_STATE][N_SYM] = {{'5', '1'}, {'2', '6'}, {'2', '0'}, {'6', '2'}, {'5', '7'}, {'6', '2'}, {'4', '6'}, {'2', '6'}};
+int final_state[N_STATE] = {0, 0, 1, 0, 0, 0, 0, 0};
 
 int visited[N_STATE] = {0};
 int active[N_STATE] = {1};
@@ -149,32 +149,38 @@ int main(){
 }
 
 /* TERMINAL
-PS D:\Junior\Study\Finite_Automata> gcc -o dfa_minimization.exe .\dfa_minimization.c
-PS D:\Junior\Study\Finite_Automata> .\dfa_minimization.exe
+PS D:\Junior\Study\Finite_Automata> gcc -o dfa_minimization_ex2.exe .\dfa_minimization_ex2.c
+PS D:\Junior\Study\Finite_Automata> .\dfa_minimization_ex2.exe
 
 GIVEN DFA IS GIVEN BY:
 -------------------------------
    STATES\IP    0       1
 -------------------------------
-     ->Q0       Q1      Q2
-       Q1       Q0      Q3
-       Q2       Q1      Q2
-      *Q3       Q2      Q0
-       Q4       Q1      Q2
+     ->Q0       Q5      Q1
+       Q1       Q2      Q6
+      *Q2       Q2      Q0
+       Q3       Q6      Q2
+       Q4       Q5      Q7
+       Q5       Q6      Q2
+       Q6       Q4      Q6
+       Q7       Q2      Q6
 -------------------------------
 STEP - 1: TERMINATION OF UNREACHABLE STATES
-Q4 terminated
+Q3 terminated
 STEP - 2: REMOVAL OF NON-FINAL STATES WITH COMMON TRANSITION
-Removed Q2 and Replaced it with Q0
+Removed Q7 and Replaced it with Q1
+Removed Q4 and Replaced it with Q0
 STEP - 3: CALCULATION OF NUMBER OF STATES IN MINIMIZED DFA
-Number of states in minimized DFA: 3
+Number of states in minimized DFA: 5
 STEP - 4: DISPLAYING THE MINIMIZED DFA
 -------------------------------
    STATES\IP    0       1
 -------------------------------
-     ->Q0       Q1      Q0
-       Q1       Q0      Q3
-      *Q3       Q0      Q0
+     ->Q0       Q5      Q1
+       Q1       Q2      Q6
+      *Q2       Q2      Q0
+       Q5       Q6      Q2
+       Q6       Q0      Q6
 -------------------------------
 
  */
